@@ -24,11 +24,11 @@ require 'rake/rdoctask'
 #
 # REMEMBER TO KEEP PKG_VERSION IN SYNC WITH THE CHANGES FILE!
 PKG_NAME = "opensearch"
-PKG_VERSION = "0.0.1"
+PKG_VERSION = "0.1.1"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 PKG_FILES = FileList[
   '[A-Z]*',
-  'lib/**/*.rb', 
+  'lib/**/*.rb',
   'doc/**/*'
 ]
 
@@ -57,7 +57,7 @@ end
 # tar, zip and gem files.
 
 spec = Gem::Specification.new do |s|
-  
+
   #### Basic information.
 
   s.name = PKG_NAME
@@ -66,7 +66,7 @@ spec = Gem::Specification.new do |s|
   s.description = <<-EOF
   OpenSearch is simple format of sharing of search results by A9. See opensearch.a9.com/ for detail.
 
-  This library is for OpenSearch version 1.0 or 1.1 
+  This library is for OpenSearch version 1.0 or 1.1
   EOF
 
   s.files = PKG_FILES.to_a

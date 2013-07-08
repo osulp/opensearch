@@ -12,6 +12,7 @@ module OpenSearch
 
     def search(url, query, post = false)
       query = setup_query(url, query)
+      query = filter_optional_argument(query)
       post ? post_content(query, post) : get_content(query)
     end
 
@@ -30,6 +31,10 @@ module OpenSearch
         url.gsub!(/\{#{key}(\?|)\}/, value.to_s)
       end
       url
+    end
+
+    def filter_optional_argument(url)
+      url.gsub!(/\{[0-9a-z:]+\?\}/, '')
     end
 
     def get_content(uri)
