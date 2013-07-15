@@ -35,6 +35,7 @@ module OpenSearch
 
     def filter_optional_argument(url)
       url.gsub!(/\{[0-9a-z:]+\?\}/, '')
+      url
     end
 
     def get_content(uri)
