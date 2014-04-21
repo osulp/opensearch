@@ -38,7 +38,8 @@ module OpenSearch
       url
     end
 
-    def get_content(uri)
+    def get_content(uri, limit=10)
+      raise ArgumentError, 'Too many HTTP redirects' if limit == 0
       uri =  URI.parse(uri)
       Net::HTTP.version_1_2
       http = Net::HTTP.new(uri.host, uri.port)
@@ -47,6 +48,7 @@ module OpenSearch
       end
       http.start {
         response = http.get("#{uri.path}?#{uri.query}")
+        return get_content(uri, limit - 1) if response.kind_of?(Net::HTTPRedirection)
         raise "Get Error : #{response.code} - #{response.message}" unless response.code == "200"
         response.body
       }
