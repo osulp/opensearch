@@ -48,7 +48,7 @@ module OpenSearch
       end
       http.start {
         response = http.get("#{uri.path}?#{uri.query}")
-        return get_content(uri, limit - 1) if response.kind_of?(Net::HTTPRedirection)
+        return get_content(uri.to_s, limit - 1) if response.kind_of?(Net::HTTPRedirection)
         raise "Get Error : #{response.code} - #{response.message}" unless response.code == "200"
         response.body
       }
